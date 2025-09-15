@@ -1,0 +1,78 @@
+graph LR
+    %% External Entities
+    subgraph "External Entities"
+        JS[Job Seekers]
+        EMP[Employers]
+        ADMIN[Administrators]
+        EXT[External Data Sources]
+    end
+
+    %% Processes
+    subgraph "Processes"
+        AUTH[User Authentication]
+        PROFILE[Profile Management]
+        JOBPOST[Job Posting]
+        MATCH[Job Matching Engine]
+        APPLY[Application Processing]
+        AI[AI Assistant]
+        ANALYTICS[Analytics Engine]
+    end
+
+    %% Data Stores
+    subgraph "Data Stores"
+        USERDB[(User Database)]
+        JOBSDB[(Jobs Database)]
+        APPSDB[(Applications Database)]
+        CACHE[(Cache Store)]
+        FILES[(File Storage)]
+    end
+
+    %% Outputs
+    subgraph "Outputs"
+        MATCHES[Job Matches]
+        RECS[Recommendations]
+        REPORTS[Analytics Reports]
+        NOTIFS[Notifications]
+    end
+
+    %% Data Flows
+    JS -->|Profile Data| AUTH
+    EMP -->|Job Data| AUTH
+    ADMIN -->|Management| AUTH
+    EXT -->|Market Data| ANALYTICS
+
+    AUTH -->|User Info| USERDB
+    AUTH -->|Session| CACHE
+
+    PROFILE -->|Profile Updates| USERDB
+    JOBPOST -->|Job Data| JOBSDB
+    APPLY -->|Application Data| APPSDB
+
+    USERDB -->|User Data| MATCH
+    JOBSDB -->|Job Data| MATCH
+    CACHE -->|Cached Data| MATCH
+
+    MATCH -->|Matches| MATCHES
+    MATCH -->|Recommendations| RECS
+
+    AI -->|AI Requests| USERDB
+    AI -->|Generated Content| FILES
+
+    ANALYTICS -->|Metrics| REPORTS
+    ANALYTICS -->|Insights| NOTIFS
+
+    %% Feedback Loops
+    MATCHES -->|User Feedback| ANALYTICS
+    RECS -->|Usage Data| ANALYTICS
+    APPSDB -->|Application Data| ANALYTICS
+
+    %% Styling
+    classDef entityClass fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef processClass fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef dataClass fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef outputClass fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+
+    class JS,EMP,ADMIN,EXT entityClass
+    class AUTH,PROFILE,JOBPOST,MATCH,APPLY,AI,ANALYTICS processClass
+    class USERDB,JOBSDB,APPSDB,CACHE,FILES dataClass
+    class MATCHES,RECS,REPORTS,NOTIFS outputClass

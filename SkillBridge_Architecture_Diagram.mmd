@@ -1,0 +1,141 @@
+graph TB
+    %% Client Layer
+    subgraph "Client Layer"
+        WEB[Web Browser]
+        MOBILE[Mobile App]
+        API_CLIENT[API Clients]
+    end
+
+    %% Load Balancer
+    LB[Load Balancer<br/>Vercel Edge]
+
+    %% Application Layer
+    subgraph "Application Layer"
+        subgraph "Frontend Services"
+            NEXT[Next.js App<br/>SSR/SSG]
+            REACT[React Components<br/>State Management]
+            UI[UI Components<br/>Shadcn/UI]
+        end
+        
+        subgraph "Backend Services"
+            API[API Routes<br/>Server Actions]
+            AUTH[Authentication<br/>NextAuth.js]
+            AI[AI Assistant<br/>OpenAI Integration]
+            PAY[Payment Service<br/>Stripe Integration]
+        end
+    end
+
+    %% Middleware Layer
+    subgraph "Middleware Layer"
+        CACHE[Redis Cache<br/>Session & Query Cache]
+        RATE[Rate Limiting<br/>Arcjet Security]
+        VALID[Validation<br/>Zod Schemas]
+    end
+
+    %% Data Layer
+    subgraph "Data Layer"
+        subgraph "Database Layer"
+            PG[(PostgreSQL<br/>Primary Database)]
+            PRISMA[Prisma ORM<br/>Query Builder]
+        end
+        
+        subgraph "Storage Layer"
+            FILES[File Storage<br/>UploadThing]
+            CDN[CDN<br/>Global Edge]
+        end
+    end
+
+    %% External Services
+    subgraph "External Services"
+        STRIPE[Stripe API<br/>Payments]
+        RESEND[Resend API<br/>Email Service]
+        OPENAI[OpenAI API<br/>AI Services]
+        GOOGLE[Google OAuth<br/>Authentication]
+        GITHUB[GitHub OAuth<br/>Authentication]
+    end
+
+    %% Background Services
+    subgraph "Background Services"
+        INNGEST[Inngest<br/>Job Queue]
+        WEBHOOKS[Webhooks<br/>Event Processing]
+        NOTIFICATIONS[Notifications<br/>Email/SMS/Push]
+    end
+
+    %% Monitoring & Analytics
+    subgraph "Monitoring & Analytics"
+        VERCEL_ANALYTICS[Vercel Analytics<br/>Performance Monitoring]
+        ERROR_TRACKING[Error Tracking<br/>Exception Monitoring]
+        LOGS[Application Logs<br/>Audit Trail]
+    end
+
+    %% Connections
+    WEB --> LB
+    MOBILE --> LB
+    API_CLIENT --> LB
+
+    LB --> NEXT
+    LB --> API
+
+    NEXT --> REACT
+    NEXT --> UI
+    NEXT --> API
+
+    API --> AUTH
+    API --> AI
+    API --> PAY
+    API --> VALID
+
+    AUTH --> CACHE
+    AI --> CACHE
+    PAY --> CACHE
+
+    VALID --> RATE
+    RATE --> PRISMA
+
+    PRISMA --> PG
+    PRISMA --> CACHE
+
+    API --> FILES
+    FILES --> CDN
+
+    PAY --> STRIPE
+    API --> RESEND
+    AI --> OPENAI
+    AUTH --> GOOGLE
+    AUTH --> GITHUB
+
+    STRIPE --> WEBHOOKS
+    WEBHOOKS --> INNGEST
+    INNGEST --> NOTIFICATIONS
+
+    API --> VERCEL_ANALYTICS
+    API --> ERROR_TRACKING
+    API --> LOGS
+
+    %% Data Flow Arrows
+    WEB -.->|User Requests| LB
+    LB -.->|Processed Requests| NEXT
+    NEXT -.->|API Calls| API
+    API -.->|Database Queries| PRISMA
+    PRISMA -.->|Data| PG
+    PG -.->|Results| PRISMA
+    PRISMA -.->|Data| API
+    API -.->|Response| NEXT
+    NEXT -.->|Rendered Page| WEB
+
+    %% Styling
+    classDef clientClass fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef appClass fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef middlewareClass fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef dataClass fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef externalClass fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef backgroundClass fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef monitoringClass fill:#fff8e1,stroke:#f57f17,stroke-width:2px
+
+    class WEB,MOBILE,API_CLIENT clientClass
+    class NEXT,REACT,UI,API,AUTH,AI,PAY appClass
+    class CACHE,RATE,VALID middlewareClass
+    class PG,PRISMA,FILES,CDN dataClass
+    class STRIPE,RESEND,OPENAI,GOOGLE,GITHUB externalClass
+    class INNGEST,WEBHOOKS,NOTIFICATIONS backgroundClass
+    class VERCEL_ANALYTICS,ERROR_TRACKING,LOGS monitoringClass
