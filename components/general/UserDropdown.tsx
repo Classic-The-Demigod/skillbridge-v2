@@ -4,7 +4,7 @@ import {
   Layers2,
   LogOut,
   Briefcase,
-  FileText,
+  // FileText,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";

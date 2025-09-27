@@ -21,7 +21,7 @@ import { useCallback } from "react";
 import { Checkbox } from "../ui/checkbox";
 import { countryList } from "@/app/utils/countriesList";
 import { Separator } from "../ui/separator";
-import { Input } from "@/components/ui/input";
+
 
 export function JobFilters() {
   const router = useRouter();
@@ -66,13 +66,13 @@ export function JobFilters() {
     router.push(`?${createQueryString("location", location)}`);
   };
 
-  const handleMinSalaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    router.push(`?${createQueryString("minSalary", e.target.value)}`);
-  };
+  // const handleMinSalaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   router.push(`?${createQueryString("minSalary", e.target.value)}`);
+  // };
 
-  const handleMaxSalaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    router.push(`?${createQueryString("maxSalary", e.target.value)}`);
-  };
+  // const handleMaxSalaryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   router.push(`?${createQueryString("maxSalary", e.target.value)}`);
+  // };
 
   const clearFilters = () => {
     router.push("/");

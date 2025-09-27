@@ -1,6 +1,6 @@
-import { auth } from "@/app/utils/auth";
+
 import { requireUser } from "@/app/utils/requireUser";
-import { redirect } from "next/navigation";
+
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 
@@ -16,7 +16,7 @@ export const ourFileRouter = {
     },
   })
     // Set permissions and file types for this FileRoute
-    .middleware(async ({ req }) => {
+    .middleware(async ({ _req }) => {
       // This code runs on your server before upload
       const session = await requireUser();
 
@@ -43,7 +43,7 @@ export const ourFileRouter = {
     },
   })
     // Set permissions and file types for this FileRoute
-    .middleware(async ({ req }) => {
+    .middleware(async ({ _req }) => {
       // This code runs on your server before upload
       const session = await requireUser();
 

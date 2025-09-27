@@ -27,7 +27,7 @@ interface AIChatInterfaceProps {
   onSendMessage?: (message: string) => void;
 }
 
-export function AIChatInterface({ onSendMessage }: AIChatInterfaceProps) {
+export function AIChatInterface({ _onSendMessage }: AIChatInterfaceProps) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);

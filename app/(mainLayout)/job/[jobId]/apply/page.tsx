@@ -3,7 +3,7 @@ import { requireUser } from "@/app/utils/requireUser";
 import { notFound, redirect } from "next/navigation";
 import { ApplicationForm } from "@/components/forms/ApplicationForm";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, MapPin, Clock, DollarSign } from "lucide-react";
 import Link from "next/link";
