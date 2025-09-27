@@ -148,7 +148,7 @@ const JobIdPage = async ({ params }: { params: Params }) => {
                 <span className="font-medium">{jobData.Company.name}</span>
 
                 <Badge className="rounded-full" variant="secondary">
-                  {jobData.employmentType}
+                  {jobData.employmentTYpe}
                 </Badge>
                 <span className="hidden md:inline text-muted-foreground">
                   •
@@ -303,7 +303,7 @@ const JobIdPage = async ({ params }: { params: Params }) => {
                   <span className="text-sm text-muted-foreground">
                     Employment type
                   </span>
-                  <span className="text-sm">{jobData.employmentType}</span>
+                  <span className="text-sm">{jobData.employmentTYpe}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-sm text-muted-foreground">
