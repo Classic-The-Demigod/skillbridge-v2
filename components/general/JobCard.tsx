@@ -14,7 +14,7 @@ interface iAppProps {
     jobTitle: string;
     salaryFrom: number;
     salaryTo: number;
-    employmentType: string;
+    employmentTYpe: string;
     location: string;
     createdAt: Date;
     Company: {
