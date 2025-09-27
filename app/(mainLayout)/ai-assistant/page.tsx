@@ -137,14 +137,7 @@ export default function AIAssistantPage() {
         </div>
 
         {/* Chat Interface */}
-        <AIChatInterface
-          onSendMessage={(message) => {
-            // TODO: Implement AI message handling
-            console.log("AI Message:", message);
-            // For now, just show an alert
-            alert(`AI Message: ${message}`);
-          }}
-        />
+        <AIChatInterface />
       </div>
     </div>
   );
