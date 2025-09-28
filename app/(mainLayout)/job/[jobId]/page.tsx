@@ -11,13 +11,10 @@ import { Heart } from "lucide-react";
 
 import Link from "next/link";
 import { auth } from "@/app/utils/auth";
-import {
-
-  SaveJobButton,
-} from "@/components/general/SubmitButtons";
+import { SaveJobButton } from "@/components/general/SubmitButtons";
 import { getFlagEmoji } from "@/app/utils/countriesList";
 import { JsonToHtml } from "@/components/general/JsonToHtml";
-import { saveJobPost, unsaveJobPost,  } from "@/app/actions";
+import { saveJobPost, unsaveJobPost } from "@/app/actions";
 import arcjet, { detectBot, tokenBucket } from "@/app/utils/arcjet";
 import { request } from "@arcjet/next";
 
@@ -122,6 +119,8 @@ const JobIdPage = async ({ params }: { params: Params }) => {
   const req = await request();
 
   const session = await auth();
+
+  console.log(session);
 
   const decision = await getClient(!!session).protect(req, { requested: 10 });
 
@@ -246,7 +245,7 @@ const JobIdPage = async ({ params }: { params: Params }) => {
                       <Link href="/my-applications">View My Applications</Link>
                     </Button>
                   </div>
-                ) : session.user.userType === "JOB_SEEKER" ? (
+                ) : session.user?.userType === "JOB_SEEKER" ? (
                   <Button asChild className="w-full">
                     <Link href={`/job/${jobId}/apply`}>Apply Now</Link>
                   </Button>

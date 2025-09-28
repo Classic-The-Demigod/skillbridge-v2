@@ -62,7 +62,7 @@ export default async function ApplyToJobPage({ params }: { params: Params }) {
   const user = await requireUser();
 
   // Check if user is a job seeker
-  if (user.userType !== "JOB_SEEKER") {
+  if (user?.userType !== "JOB_SEEKER") {
     redirect("/");
   }
 

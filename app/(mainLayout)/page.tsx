@@ -121,7 +121,7 @@ export default async function Home({ searchParams }: SearchParams) {
   }
 
   // Show different content based on user type
-  if (session.user.userType === "COMPANY") {
+  if (session.user?.userType === "COMPANY") {
     const stats = await getCompanyStats(session.user.id as string);
 
     return (
@@ -241,7 +241,7 @@ export default async function Home({ searchParams }: SearchParams) {
   }
 
   // Job Seeker Dashboard
-  if (session.user.userType === "JOB_SEEKER") {
+  if (session.user?.userType === "JOB_SEEKER") {
     const stats = await getJobSeekerStats(session.user.id as string);
 
     return (

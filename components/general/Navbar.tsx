@@ -9,6 +9,7 @@ import { UserDropdown } from "./UserDropdown";
 import { prisma } from "@/app/utils/db";
 import { MobileNav } from "./MobileNav";
 import { Bot } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
 
 export async function Navbar() {
   const session = await auth();

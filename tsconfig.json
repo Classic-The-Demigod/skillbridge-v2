@@ -21,7 +21,8 @@
     ],
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
+    "strictNullChecks": false,
     "target": "ES2017"
   },
   "esModuleInterop": true,

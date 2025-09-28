@@ -339,7 +339,7 @@ export async function applyToJob(
   }
 
   // Check if user is a job seeker
-  if (user.userType !== "JOB_SEEKER") {
+  if (user?.userType !== "JOB_SEEKER") {
     throw new Error("Only job seekers can apply to jobs");
   }
 

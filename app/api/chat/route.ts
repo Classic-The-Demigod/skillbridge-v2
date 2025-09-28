@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     const user = await requireUser();
     console.log("User authenticated:", user.id);
 
-    if (user.userType !== "JOB_SEEKER") {
+    if (user?.userType !== "JOB_SEEKER") {
       return Response.json(
         { error: "Only job seekers can use AI assistant" },
         { status: 403 }
